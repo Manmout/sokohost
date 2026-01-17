@@ -1,93 +1,237 @@
-# üöÄ SokoHost - Plateforme Digital Open-Source
+# SokoHost - Digital Products Marketplace
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/Manmout/sokohost)](https://github.com/Manmout/sokohost)
+Open-source marketplace platform for buying and selling digital products (ebooks, templates, courses, music, code, etc.).
 
-Une plateforme **100% gratuite et open-source** pour vendre et acheter des produits digitaux.
+## Features
 
-## ‚ú® Features
+? **Buyer Features**
+- Browse and search digital products
+- Secure payment with Stripe
+- Download purchased products
+- Leave reviews and ratings
+- Manage purchase history
 
-- ‚úÖ **100% Gratuit** - Z√©ro co√ªts, z√©ro frais cach√©s
-- ‚úÖ **Open Source** - Code public (MIT License)
-- ‚úÖ **Paiement S√©curis√©** - Stripe int√©gr√©
-- ‚úÖ **Dashboard Vendeur** - G√©rez produits et ventes
-- ‚úÖ **Multi-cat√©gories** - Ebooks, Templates, Cours, Code, Musique
+? **Seller Features**
+- Upload and sell digital products
+- Track sales and revenue
+- Manage product listings
+- View analytics
 
-## üöÄ Quick Start
+? **Technical Features**
+- Built with Next.js (Frontend) and Express.js (Backend)
+- PostgreSQL database via Supabase
+- Secure JWT authentication
+- Stripe payment integration
+- RESTful API
+- Fully open-source (MIT License)
 
-### Pr√©requis
+## Tech Stack
+
+### Frontend
+- **Next.js 14** - React framework
+- **Tailwind CSS** - Styling
+- **Zustand** - State management
+- **Axios** - HTTP client
+- **Stripe React** - Payment UI
+
+### Backend
+- **Express.js** - Node.js framework
+- **Supabase** - PostgreSQL database
+- **JWT** - Authentication
+- **Stripe API** - Payment processing
+- **Bcrypt** - Password hashing
+
+### Infrastructure
+- **Vercel** - Frontend hosting (free tier)
+- **Railway** - Backend hosting (free tier)
+- **Supabase** - Database hosting (free tier)
+- **Stripe** - Payment processing
+
+## Getting Started
+
+### Prerequisites
 - Node.js 18+
-- npm
-- Compte Supabase (gratuit)
-- Compte Stripe (gratuit)
+- npm or yarn
+- Git
 
-### Installation
-```bash
-# Clone
+### 1. Clone the Repository
+
+\\\\\\ash
 git clone https://github.com/Manmout/sokohost.git
 cd sokohost
+\\\\\\
 
-# Backend
+### 2. Setup Backend
+
+\\\\\\ash
 cd backend
 npm install
-cp .env.example .env
-# Remplir .env avec vos cl√©s
-npm run dev
 
-# Frontend (autre terminal)
+# Create .env file
+cp .env.example .env
+
+# Add your environment variables:
+# - SUPABASE_URL
+# - SUPABASE_KEY
+# - JWT_SECRET
+# - STRIPE_SECRET_KEY
+# - etc.
+
+# Start backend server
+npm run dev
+\\\\\\
+
+Backend will run on \\http://localhost:5000\\
+
+### 3. Setup Frontend
+
+\\\\\\ash
 cd ../frontend
 npm install
+
+# Create .env.local file
 cp .env.local.example .env.local
+
+# Add your environment variables:
+# - NEXT_PUBLIC_API_URL
+# - NEXT_PUBLIC_STRIPE_KEY
+
+# Start frontend development server
 npm run dev
-```
+\\\\\\
 
-Frontend: http://localhost:3000
-Backend: http://localhost:5000
+Frontend will run on \\http://localhost:3000\\
 
-## üìö Documentation
+### 4. Setup Database
 
-- [Setup Guide](docs/setup.md)
-- [API Documentation](docs/api.md)
-- [Database Schema](docs/database.sql)
-- [Contributing](CONTRIBUTING.md)
+1. Create a free Supabase account at https://supabase.com
+2. Create a new project
+3. In the SQL editor, run the contents of \\database/schema.sql\\
+4. Optionally run \\database/seed.sql\\ for demo data
+5. Copy your Supabase URL and anon key to backend \\.env\\
 
-## üõ† Stack
+### 5. Setup Stripe
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React 18 + Next.js 14 + Tailwind |
-| Backend | Node.js + Express |
-| Database | PostgreSQL (Supabase) |
-| Payment | Stripe |
-| Auth | JWT |
+1. Create a free Stripe account at https://stripe.com
+2. Get your API keys from the dashboard
+3. Add them to backend \\.env\\ file
 
-## üí∞ Mod√®le √âconomique
+## API Documentation
 
-- **Vendeurs** : Gratuit (frais Stripe seulement)
-- **Acheteurs** : Gratuit (paiement direct)
-- **Nous** : 10% sur frais Stripe
+### Authentication
+- POST \\/api/auth/register\\ - Register new user
+- POST \\/api/auth/login\\ - Login user
 
-## ü§ù Contributing
+### Products
+- GET \\/api/products\\ - List all products
+- GET \\/api/products/:id\\ - Get product details
+- POST \\/api/products\\ - Create new product (auth required)
+- PUT \\/api/products/:id\\ - Update product (auth required)
+- DELETE \\/api/products/:id\\ - Delete product (auth required)
 
-Les contributions sont bienvenues !
-```bash
-git checkout -b feature/awesome
-git commit -m "feat: add awesome feature"
-git push origin feature/awesome
-```
+### Orders
+- POST \\/api/orders/create-intent\\ - Create Stripe payment intent
+- POST \\/api/orders/confirm\\ - Confirm payment and create order
+- GET \\/api/orders\\ - Get user's orders (auth required)
 
-Voir [CONTRIBUTING.md](CONTRIBUTING.md) pour plus de d√©tails.
+### Downloads
+- GET \\/api/downloads/:product_id\\ - Get download link (auth required)
 
-## üìù License
+### Users
+- GET \\/api/users/profile\\ - Get current user profile (auth required)
+- PUT \\/api/users/profile\\ - Update user profile (auth required)
 
-MIT - Voir [LICENSE](LICENSE)
+## Project Structure
 
-## üìû Support
+\\\\\\
+sokohost/
++-- backend/
+¶   +-- src/
+¶   ¶   +-- routes/        # API routes
+¶   ¶   +-- middleware/    # Express middleware
+¶   ¶   +-- config/        # Configuration files
+¶   ¶   +-- utils/         # Utility functions
+¶   ¶   +-- index.js       # Main server file
+¶   +-- package.json
+¶   +-- .env.example
++-- frontend/
+¶   +-- app/               # Next.js app directory
+¶   +-- components/        # React components
+¶   +-- lib/              # Utility functions
+¶   +-- styles/           # CSS files
+¶   +-- package.json
+¶   +-- .env.local.example
++-- database/
+¶   +-- schema.sql        # Database schema
+¶   +-- seed.sql          # Demo data
++-- README.md
+\\\\\\
 
-- üìñ [Documentation](docs/)
-- üêõ [Issues](https://github.com/Manmout/sokohost/issues)
-- üí¨ [Discussions](https://github.com/Manmout/sokohost/discussions)
+## Deployment
+
+### Deploy Frontend to Vercel
+
+\\\\\\ash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+\\\\\\
+
+### Deploy Backend to Railway
+
+1. Go to https://railway.app
+2. Connect your GitHub repository
+3. Add environment variables
+4. Deploy
+
+## Environment Variables
+
+### Backend (.env)
+\\\\\\
+PORT=5000
+NODE_ENV=development
+SUPABASE_URL=...
+SUPABASE_KEY=...
+JWT_SECRET=your-secret-key
+STRIPE_SECRET_KEY=...
+STRIPE_PUBLIC_KEY=...
+FRONTEND_URL=http://localhost:3000
+\\\\\\
+
+### Frontend (.env.local)
+\\\\\\
+NEXT_PUBLIC_API_URL=http://localhost:5000/api
+NEXT_PUBLIC_STRIPE_KEY=...
+\\\\\\
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+## License
+
+This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
+
+## Support
+
+For support, open an issue on GitHub: https://github.com/Manmout/sokohost/issues
+
+## Roadmap
+
+- [ ] User dashboard
+- [ ] Seller analytics
+- [ ] Product reviews and ratings
+- [ ] Search and filtering improvements
+- [ ] Email notifications
+- [ ] Refund system
+- [ ] Multiple payment methods
+- [ ] Product bundles
+- [ ] Affiliate system
 
 ---
 
-**Made with ‚ù§Ô∏è by [Manmout](https://github.com/Manmout)**
+**Made with ?? by the SokoHost community**

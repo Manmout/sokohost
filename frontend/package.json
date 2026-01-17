@@ -1,0 +1,28 @@
+{
+    "version":  "1.0.0",
+    "name":  "sokohost-frontend",
+    "description":  "Frontend for SokoHost - Digital Products Marketplace",
+    "scripts":  {
+                    "lint":  "next lint",
+                    "build":  "next build",
+                    "dev":  "next dev",
+                    "start":  "next start"
+                },
+    "dependencies":  {
+                         "@stripe/react-stripe-js":  "^2.1.0",
+                         "@stripe/stripe-js":  "^1.46.0",
+                         "react":  "^18.2.0",
+                         "zustand":  "^4.3.9",
+                         "axios":  "^1.4.0",
+                         "react-dom":  "^18.2.0",
+                         "next-auth":  "^4.23.0",
+                         "next":  "^14.0.0"
+                     },
+    "devDependencies":  {
+                            "eslint-config-next":  "^14.0.0",
+                            "autoprefixer":  "^10.4.14",
+                            "postcss":  "^8.4.24",
+                            "tailwindcss":  "^3.3.0",
+                            "eslint":  "^8.44.0"
+                        }
+}
