@@ -47,12 +47,12 @@ export default function ProductsPage() {
             <div key={product.id} className='card'>
               <h4>{product.title}</h4>
               <p>{product.description}</p>
-              <p className='price'>\\</p>
+              <p className='price'>${product.price}</p>
               <p style={{ fontSize: '0.9rem', color: '#999' }}>
                 Type: {product.type}
               </p>
               <button className='btn-secondary'>
-                <a href={\\/products/\\\\}>View Details</a>
+                <a href={`/products/${product.id}`}>View Details</a>
               </button>
             </div>
           ))}
