@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } = require('react');
+import { useEffect, useState } from 'react';
 import api from '../lib/api';
 
 export default function Home() {
@@ -39,8 +39,8 @@ export default function Home() {
               <div key={product.id} className='card'>
                 <h4>{product.title}</h4>
                 <p>{product.description}</p>
-                <p className='price'>\\</p>
-                <button className='btn-secondary'><a href={\\/products/\\\\}>View Details</a></button>
+                <p className='price'>${product.price}</p>
+                <button className='btn-secondary'><a href={`/products/${product.id}`}>View Details</a></button>
               </div>
             ))}
           </div>
